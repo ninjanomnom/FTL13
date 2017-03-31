@@ -149,6 +149,11 @@
 	name = "circuit board (Security Cameras)"
 	build_path = /obj/machinery/computer/security
 	origin_tech = "programming=2;combat=2"
+	
+/obj/item/weapon/circuitboard/computer/fusion_console
+	name = "circuit board (Reaction Control Console)"
+	/obj/machinery/computer/fusion_console
+	origin_tech = "programming=4;engineering=4;magnets=3;plasmatech=4"
 
 /obj/item/weapon/circuitboard/computer/aiupload
 	name = "circuit board (AI Upload)"
