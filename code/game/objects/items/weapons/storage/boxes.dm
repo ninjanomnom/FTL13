@@ -122,8 +122,6 @@
 
 	qdel(src)
 
-
-
 /obj/item/weapon/storage/box/attackby(obj/item/W, mob/user, params)
 
 	if(istype(W, /obj/item/stack/packageWrap))
@@ -131,10 +129,6 @@
 		return 0
 
 	return ..()
-
-
-
-
 
 //Disk boxes
 
@@ -144,17 +138,11 @@
 
 	illustration = "disk_kit"
 
-
-
 /obj/item/weapon/storage/box/disks/PopulateContents()
 
 	for(var/i in 1 to 7)
 
 		new /obj/item/weapon/disk/data(src)
-
-
-
-
 
 /obj/item/weapon/storage/box/disks_plantgene
 
@@ -162,14 +150,11 @@
 
 	illustration = "disk_kit"
 
-
-
 /obj/item/weapon/storage/box/disks_plantgene/PopulateContents()
 
 	for(var/i in 1 to 7)
 
 		new /obj/item/weapon/disk/plantgene(src)
-
 
 
 // Ordinary survival box
@@ -184,15 +169,13 @@
 
 	new /obj/item/clothing/suit/space/fragile(src)
 
-
+	new /obj/item/clothing/head/helmet/space/fragile(src)
 
 /obj/item/weapon/storage/box/survival/radio/PopulateContents()
 
 	..() // we want the survival stuff too.
 
 	new /obj/item/device/radio/off(src)
-
-
 
 /obj/item/weapon/storage/box/survival_mining/PopulateContents()
 
@@ -206,9 +189,7 @@
 
 	new /obj/item/clothing/suit/space/fragile(src)
 
-
-
-
+	new /obj/item/clothing/head/helmet/space/fragile(src)
 
 // Engineer survival box
 
@@ -221,32 +202,30 @@
 	new /obj/item/weapon/reagent_containers/hypospray/medipen(src)
 
 	new /obj/item/clothing/suit/space/fragile(src)
-	
+
+	new /obj/item/clothing/head/helmet/space/fragile(src)
 
 /obj/item/weapon/storage/box/cookie/PopulateContents()
 
 	new /obj/item/weapon/reagent_containers/food/snacks/cookie(src)
-	
+
 	new /obj/item/weapon/reagent_containers/food/snacks/cookie(src)
-	
+
 	new /obj/item/weapon/reagent_containers/food/snacks/cookie(src)
-	
+
 	new /obj/item/weapon/reagent_containers/food/snacks/oatmealcookie(src)
-	
+
 	new /obj/item/weapon/reagent_containers/food/snacks/oatmealcookie(src)
-	
+
 	new /obj/item/weapon/reagent_containers/food/snacks/raisincookie(src)
-	
+
 	new /obj/item/weapon/reagent_containers/food/snacks/raisincookie(src)
-	
 
 /obj/item/weapon/storage/box/engineer/radio/PopulateContents()
 
 	..() // we want the regular items too.
 
 	new /obj/item/device/radio/off(src)
-
-
 
 // Syndie survival box
 
@@ -258,7 +237,7 @@
 
 	new /obj/item/clothing/suit/space/fragile(src)
 
-
+	new /obj/item/clothing/head/helmet/space/fragile(src)
 
 // Security survival box
 
@@ -272,15 +251,13 @@
 
 	new /obj/item/clothing/suit/space/fragile(src)
 
-
+	new /obj/item/clothing/head/helmet/space/fragile(src)
 
 /obj/item/weapon/storage/box/security/radio/PopulateContents()
 
 	..() // we want the regular stuff too
 
 	new /obj/item/device/radio/off(src)
-
-
 
 /obj/item/weapon/storage/box/gloves
 
@@ -290,15 +267,11 @@
 
 	illustration = "latex"
 
-
-
 /obj/item/weapon/storage/box/gloves/PopulateContents()
 
 	for(var/i in 1 to 7)
 
 		new /obj/item/clothing/gloves/color/latex(src)
-
-
 
 /obj/item/weapon/storage/box/masks
 
@@ -308,15 +281,11 @@
 
 	illustration = "sterile"
 
-
-
 /obj/item/weapon/storage/box/masks/PopulateContents()
 
 	for(var/i in 1 to 7)
 
 		new /obj/item/clothing/mask/surgical(src)
-
-
 
 /obj/item/weapon/storage/box/syringes
 
@@ -326,15 +295,11 @@
 
 	illustration = "syringe"
 
-
-
 /obj/item/weapon/storage/box/syringes/PopulateContents()
 
 	for(var/i in 1 to 7)
 
 		new /obj/item/weapon/reagent_containers/syringe(src)
-
-
 
 /obj/item/weapon/storage/box/medipens
 
@@ -344,15 +309,11 @@
 
 	illustration = "syringe"
 
-
-
 /obj/item/weapon/storage/box/medipens/PopulateContents()
 
 	for(var/i in 1 to 7)
 
 		new /obj/item/weapon/reagent_containers/hypospray/medipen(src)
-
-
 
 /obj/item/weapon/storage/box/medipens/utility
 
@@ -362,8 +323,6 @@
 
 	illustration = "syringe"
 
-
-
 /obj/item/weapon/storage/box/medipens/utility/PopulateContents()
 
 	..() // includes regular medipens.
@@ -372,15 +331,11 @@
 
 		new /obj/item/weapon/reagent_containers/hypospray/medipen/stimpack(src)
 
-
-
 /obj/item/weapon/storage/box/beakers
 
 	name = "box of beakers"
 
 	illustration = "beaker"
-
-
 
 /obj/item/weapon/storage/box/beakers/PopulateContents()
 
@@ -388,15 +343,11 @@
 
 		new /obj/item/weapon/reagent_containers/glass/beaker( src )
 
-
-
 /obj/item/weapon/storage/box/injectors
 
 	name = "box of DNA injectors"
 
 	desc = "This box contains injectors, it seems."
-
-
 
 /obj/item/weapon/storage/box/injectors/PopulateContents()
 
@@ -408,8 +359,6 @@
 
 		new /obj/item/weapon/dnainjector/m2h(src)
 
-
-
 /obj/item/weapon/storage/box/flashbangs
 
 	name = "box of flashbangs (WARNING)"
@@ -420,15 +369,11 @@
 
 	illustration = "flashbang"
 
-
-
 /obj/item/weapon/storage/box/flashbangs/PopulateContents()
 
 	for(var/i in 1 to 7)
 
 		new /obj/item/weapon/grenade/flashbang(src)
-
-
 
 /obj/item/weapon/storage/box/flashes
 
@@ -440,15 +385,11 @@
 
 	illustration = "flashbang"
 
-
-
 /obj/item/weapon/storage/box/flashes/PopulateContents()
 
 	for(var/i in 1 to 6)
 
 		new /obj/item/device/assembly/flash/handheld(src)
-
-
 
 /obj/item/weapon/storage/box/wall_flash
 
@@ -457,8 +398,6 @@
 	desc = "This box contains everything necessary to build a wall-mounted flash. <B>WARNING: Flashes can cause serious eye damage, protective eyewear is required.</B>"
 
 	illustration = "flashbang"
-
-
 
 /obj/item/weapon/storage/box/wall_flash/PopulateContents()
 
@@ -1825,4 +1764,3 @@
 	for(var/i in 1 to 7)
 
 		new /obj/item/weapon/reagent_containers/pill/patch/silver_sulf(src)
-
