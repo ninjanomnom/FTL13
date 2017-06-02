@@ -19,7 +19,7 @@ Bridge Officer
 	access = list(GLOB.access_heads, GLOB.access_helm, GLOB.access_maint_tunnels)
 	minimal_access = list(GLOB.access_heads, GLOB.access_helm, GLOB.access_maint_tunnels)
 
-var/list/posts = list("weapons", "helms")
+GLOBAL_LIST_INIT(posts, list("weapons", "helms"))
 
 /datum/outfit/job/bofficer //utilizes XO headset for now
 	name = "Bridge Officer"
@@ -42,10 +42,10 @@ var/list/posts = list("weapons", "helms")
 /datum/outfit/job/bofficer/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
   ..()
 
-  if(posts.len)
-    post = pick(posts)
+  if(GLOB.posts.len)
+    post = pick(GLOB.posts)
     if(!visualsOnly)
-      posts -= post
+      GLOB.posts -= post
     switch(post)
       if("weapons")
         post_access = list(GLOB.access_weapons_console)
