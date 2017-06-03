@@ -1658,15 +1658,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/ftl/bridge/eva)
-"dvF" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden{
-	dir = 4
-	},
-/obj/machinery/airalarm{
-	pixel_y = 22
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/ftl/cargo/mining)
 "dxN" = (
 /obj/structure/table/glass,
 /obj/machinery/atmospherics/pipe/simple/supply/visible{
@@ -2413,6 +2404,25 @@
 /area/shuttle/ftl/security/brig{
 	name = "Departures Checkpoint"
 	})
+"eGk" = (
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 26
+	},
+/obj/machinery/airalarm{
+	dir = 1;
+	icon_state = "alarm0";
+	pixel_y = -22
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/ftl/cargo/mining)
 "eHQ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plasteel,
@@ -4181,32 +4191,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/ftl/assembly/robotics)
-"hBZ" = (
-/obj/structure/closet/crate/engineering,
-/obj/item/weapon/storage/belt/utility,
-/obj/item/stack/spacecash/c10,
-/obj/item/stack/sheet/glass/fifty,
-/obj/item/weapon/electronics/apc,
-/obj/item/weapon/weldingtool,
-/obj/effect/spawner/lootdrop/maintenance{
-	lootcount = 4;
-	name = "4maintenance loot spawner"
-	},
-/obj/item/stack/sheet/metal/fifty,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/device/t_scanner,
-/obj/machinery/firealarm{
-	pixel_y = 26
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/camera{
-	c_tag = "Mining Shuttle Workspace";
-	dir = 6
-	},
-/turf/open/floor/plasteel/bot,
-/area/shuttle/ftl/cargo/mining)
 "hDC" = (
 /obj/machinery/door/airlock/research{
 	name = "Xenobiology";
@@ -5721,20 +5705,6 @@
 /obj/structure/tank_dispenser,
 /turf/open/floor/plasteel,
 /area/shuttle/ftl/atmos/equipment)
-"kdU" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/on/station{
-	dir = 2
-	},
-/obj/machinery/camera{
-	c_tag = "Mining Shuttle EVA";
-	dir = 5
-	},
-/obj/machinery/light_switch{
-	pixel_x = -24;
-	pixel_y = 8
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/ftl/cargo/mining)
 "keg" = (
 /obj/machinery/computer/arcade,
 /turf/open/floor/plasteel,
@@ -5945,18 +5915,6 @@
 /obj/item/weapon/storage/toolbox/emergency,
 /turf/open/floor/plating,
 /area/shuttle/ftl/hallway/secondary/construction)
-"kAr" = (
-/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
-	dir = 1
-	},
-/obj/machinery/firealarm{
-	pixel_y = 26
-	},
-/obj/machinery/door/window/westleft{
-	dir = 4
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/ftl/cargo/mining)
 "kBe" = (
 /obj/machinery/button/door{
 	id = "surgery_shutters";
@@ -6205,22 +6163,6 @@
 	},
 /turf/open/floor/plasteel/black,
 /area/shuttle/ftl/security/brig)
-"kSQ" = (
-/obj/structure/closet/crate/medical,
-/obj/item/weapon/storage/firstaid/regular,
-/obj/machinery/light{
-	dir = 2
-	},
-/obj/item/weapon/storage/firstaid/regular,
-/obj/item/weapon/storage/pill_bottle,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
-	dir = 8
-	},
-/turf/open/floor/plasteel/bot,
-/area/shuttle/ftl/cargo/mining)
 "kUR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -10748,6 +10690,29 @@
 	icon_state = "white"
 	},
 /area/shuttle/ftl/cargo/mining)
+"scM" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "Emergency Shuttle Airlock";
+	req_access_txt = "0"
+	},
+/obj/effect/landmark/pod_port_spawner{
+	dheight = 7;
+	dir = 1;
+	dwidth = 0;
+	height = 17;
+	pod_id = "pod3";
+	pod_name = "Escape Shuttle A";
+	width = 11
+	},
+/obj/structure/fans/tiny,
+/obj/docking_port/mobile/pod{
+	dir = 4;
+	dwidth = 9;
+	height = 11;
+	width = 17
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/ftl/subshuttle/pod_3)
 "scO" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plasteel,
@@ -13340,6 +13305,29 @@
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on/station,
 /turf/open/floor/plasteel/darkbrown,
 /area/shuttle/ftl/cargo/office)
+"wsW" = (
+/obj/structure/closet/crate/engineering,
+/obj/item/weapon/storage/belt/utility,
+/obj/item/stack/spacecash/c10,
+/obj/item/stack/sheet/glass/fifty,
+/obj/item/weapon/electronics/apc,
+/obj/item/weapon/weldingtool,
+/obj/effect/spawner/lootdrop/maintenance{
+	lootcount = 4;
+	name = "4maintenance loot spawner"
+	},
+/obj/item/stack/sheet/metal/fifty,
+/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/device/t_scanner,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/camera{
+	c_tag = "Mining Shuttle Workspace";
+	dir = 6
+	},
+/turf/open/floor/plasteel/bot,
+/area/shuttle/ftl/cargo/mining)
 "wtA" = (
 /obj/machinery/doorButtons/access_button{
 	idDoor = "virology_airlock_exterior";
@@ -15036,6 +15024,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/ftl/engine/tool_storage)
+<<<<<<< HEAD
+"zDu" = (
+/obj/machinery/gravity_generator/main/station,
+/turf/open/floor/engine,
+/area/shuttle/ftl/engine/engine_smes)
+=======
 "zDj" = (
 /obj/item/weapon/twohanded/required/kirbyplants/random,
 /obj/machinery/newscaster{
@@ -15043,6 +15037,7 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/ftl/cargo/mining)
+>>>>>>> rebase/rebase
 "zGe" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/plasteel/black,
@@ -18256,12 +18251,22 @@
 	},
 /turf/open/floor/plasteel/black,
 /area/shuttle/ftl/telecomms/computer)
+<<<<<<< HEAD
+"EBH" = (
+/obj/item/weapon/twohanded/required/kirbyplants/random,
+/obj/machinery/newscaster{
+	pixel_y = -30
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/ftl/cargo/mining)
+=======
 "EBk" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 10
 	},
 /turf/open/floor/engine,
 /area/shuttle/ftl/engine/gravity_generator)
+>>>>>>> rebase/rebase
 "EBW" = (
 /obj/structure/cable{
 	crit_fail = 0;
@@ -21994,6 +21999,15 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/shuttle/ftl/medical/medbay)
+"KVK" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden{
+	dir = 1
+	},
+/obj/machinery/door/window/westleft{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/ftl/cargo/mining)
 "KVU" = (
 /obj/item/weapon/banner,
 /obj/machinery/power/apc{
@@ -22647,16 +22661,6 @@
 /obj/machinery/computer/stockexchange,
 /turf/open/floor/plasteel/darkbrown,
 /area/shuttle/ftl/cargo/qm)
-"LTD" = (
-/obj/machinery/power/terminal{
-	dir = 1
-	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/ftl/cargo/mining)
 "LTP" = (
 /obj/machinery/atmospherics/components/binary/valve/digital{
 	tag = "icon-dvalve_map (EAST)";
@@ -22843,6 +22847,16 @@
 	},
 /turf/open/floor/plasteel/black,
 /area/shuttle/ftl/security/masteratarms)
+"MoG" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/on/station{
+	dir = 2
+	},
+/obj/machinery/camera{
+	c_tag = "Mining Shuttle EVA";
+	dir = 5
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/ftl/cargo/mining)
 "Mpq" = (
 /obj/machinery/door/poddoor/preopen{
 	id = "xenobio4";
@@ -24930,6 +24944,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/ftl/hallway/secondary/entry)
+"PKT" = (
+/obj/machinery/light_switch{
+	pixel_x = 8;
+	pixel_y = -24
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/ftl/cargo/mining)
 "PMM" = (
 /obj/item/chair{
 	dir = 8
@@ -27096,6 +27117,25 @@
 	},
 /turf/open/floor/plasteel/floorgrime,
 /area/shuttle/ftl/security/masteratarms)
+"TuN" = (
+/obj/structure/closet/crate/medical,
+/obj/item/weapon/storage/firstaid/regular,
+/obj/machinery/light{
+	dir = 2
+	},
+/obj/item/weapon/storage/firstaid/regular,
+/obj/item/weapon/storage/pill_bottle,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
+	dir = 8
+	},
+/obj/machinery/firealarm{
+	pixel_y = -26
+	},
+/turf/open/floor/plasteel/bot,
+/area/shuttle/ftl/cargo/mining)
 "Tvd" = (
 /obj/machinery/conveyor_switch/oneway{
 	id = "munitions";
@@ -28407,12 +28447,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/shuttle/ftl/atmos)
-"VEq" = (
-/obj/structure/sign/poster/random{
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/ftl/cargo/mining)
 "VFr" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on/station{
 	dir = 2
@@ -29576,26 +29610,6 @@
 	},
 /turf/open/floor/plasteel/black,
 /area/shuttle/ftl/security/brig)
-"XvJ" = (
-/obj/machinery/door/airlock/shuttle{
-	name = "Emergency Shuttle Airlock";
-	req_access_txt = "0"
-	},
-/obj/effect/landmark/pod_port_spawner{
-	dheight = 7;
-	dir = 1;
-	dwidth = 0;
-	height = 17;
-	pod_id = "pod3";
-	pod_name = "Escape Shuttle A";
-	width = 11
-	},
-/obj/structure/fans/tiny,
-/obj/docking_port/mobile/emergency{
-	
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/ftl/subshuttle/pod_3)
 "XvL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 1
@@ -63928,11 +63942,17 @@ toK
 MTP
 nIC
 vAf
-hBZ
+wsW
 Fyy
+<<<<<<< HEAD
+TuN
+vAf
+upw
+=======
 kSQ
 NqF
 zDj
+>>>>>>> rebase/rebase
 Pwf
 vkQ
 vAf
@@ -64192,8 +64212,8 @@ iSX
 xyj
 Pwf
 Pwf
-VEq
-upw
+Pwf
+EBH
 vAf
 BnG
 xYB
@@ -64445,8 +64465,13 @@ HtO
 lSH
 NqF
 VxH
+<<<<<<< HEAD
+vAf
+KVK
+=======
 NqF
 kAr
+>>>>>>> rebase/rebase
 jOn
 jOn
 xyj
@@ -64702,7 +64727,7 @@ HtO
 VWd
 vAf
 UmP
-kdU
+MoG
 URB
 Zzs
 scO
@@ -65992,7 +66017,7 @@ Pwf
 QuZ
 WOP
 OEc
-Pwf
+PKT
 vAf
 BnG
 YnT
@@ -66239,7 +66264,11 @@ toK
 toK
 toK
 vAf
+<<<<<<< HEAD
+vAf
+=======
 NqF
+>>>>>>> rebase/rebase
 TQF
 NqF
 NqF
@@ -66503,9 +66532,15 @@ NqF
 NqF
 vXg
 vXg
+<<<<<<< HEAD
+JND
+vAf
+OEc
+=======
 jIH
 NqF
 dvF
+>>>>>>> rebase/rebase
 Pwf
 vXg
 qSL
@@ -67277,7 +67312,7 @@ DHu
 dyY
 NqF
 KAE
-LTD
+eGk
 vAf
 BnG
 qcY
@@ -73737,7 +73772,7 @@ sZc
 Ikf
 sZc
 sZc
-XvJ
+scM
 sZc
 jSh
 YDz
