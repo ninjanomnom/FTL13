@@ -380,9 +380,9 @@
 			if(time_left <= 0)
 				//move each escape pod to its corresponding escape dock
 				for(var/A in SSshuttle.mobile)
-					var/obj/docking_port/mobile/M = A
+					var/obj/docking_port/mobile/pod/M = A
 					if(M.launch_status == ENDGAME_LAUNCHED || EARLY_LAUNCHED)
-						if(istype(M, /obj/docking_port/mobile/pod))
+						if(istype(M))
 							SSshuttle.generate_pod_landings() //enter rimworld
 							M.dock(SSshuttle.getDock("[M.id]_away"))
 							if(prob(50))
@@ -392,8 +392,8 @@
 
 				// now move the actual emergency shuttle to centcomm
 				// unless the shuttle is "hijacked"
-				var/destination_dock = "emergency_away"
-/*				if(is_hijacked())
+/*				var/destination_dock = "emergency_away"
+				if(is_hijacked())
 					destination_dock = "emergency_syndicate"
 					minor_announce("Corruption detected in \
 						shuttle navigation protocols. Please contact your \
@@ -445,7 +445,7 @@
 	var/explosions = round(turfs.len/5)
 
 	for(var/i = 1 to explosions)
-		explosion(epicenter,1,3,5)
+		explosion(pick(turfs),1,3,5)
 
 
 

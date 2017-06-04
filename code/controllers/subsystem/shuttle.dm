@@ -17,6 +17,7 @@ SUBSYSTEM_DEF(shuttle)
 
 		//emergency shuttle stuff
 	var/obj/docking_port/mobile/emergency/emergency
+	var/obj/docking_port/mobile/emergency/backup/backup_shuttle
 	var/emergencyCallTime = 6000	//time taken for emergency shuttle to reach the station when called (in deciseconds)
 	var/emergencyDockTime = 1800	//time taken for emergency shuttle to leave again once it has docked (in deciseconds)
 	var/emergencyEscapeTime = 1200	//time taken for emergency shuttle to reach a safe distance after leaving station (in deciseconds)
@@ -189,7 +190,7 @@ SUBSYSTEM_DEF(shuttle)
 		to_chat(user, "The escape pods are refueling. Please wait another [abs(round(((world.time - SSticker.round_start_time) - config.shuttle_refuel_delay)/600))] minutes before trying again.")
 		return
 
-	switch(emergencyMode)
+	switch(emergency.mode)
 		if(SHUTTLE_CALL)
 			to_chat(user, "The esacpe pods are already refueling.")
 			return
@@ -556,13 +557,13 @@ SUBSYSTEM_DEF(shuttle)
 			return TRUE
 
 /datum/controller/subsystem/shuttle/proc/generate_pod_landings()
-	var/obj/docking_port/mobile/M = SSshutle.getDock("ftldock_land")
+	var/obj/docking_port/mobile/M = SSshuttle.getDock("ftldock_land")
 	if(!M)
 		return //if we're flying into a gas giant, RIP
 
 	for(var/A in SSshuttle.mobile)
-		var/obj/docking_port/mobile/pod = A
-		if(!istype(A))
+		var/obj/docking_port/mobile/pod/P = A
+		if(!istype(P))
 			continue
 
 		var/turf/T = locate(rand(0,world.maxx-50),rand(0,world.maxy-50),M.z)
@@ -570,5 +571,5 @@ SUBSYSTEM_DEF(shuttle)
 			continue
 
 		var/obj/docking_port/stationary/S = new(T)
-		S.id = "[A.id]_away"
+		S.id = "[P.id]_away"
 

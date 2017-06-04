@@ -3895,6 +3895,30 @@
 	},
 /turf/open/floor/plasteel/black,
 /area/shuttle/ftl/bridge)
+"hgl" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "Emergency Shuttle Airlock";
+	req_access_txt = "0"
+	},
+/obj/effect/landmark/pod_port_spawner{
+	dheight = 7;
+	dir = 1;
+	dwidth = 0;
+	height = 17;
+	pod_id = "pod3";
+	pod_name = "Escape Shuttle A";
+	width = 11
+	},
+/obj/structure/fans/tiny,
+/obj/docking_port/mobile/pod{
+	dir = 4;
+	dwidth = 9;
+	height = 11;
+	id = "pod3";
+	width = 17
+	},
+/turf/open/floor/plasteel,
+/area/shuttle/ftl/subshuttle/pod_3)
 "hhc" = (
 /obj/machinery/r_n_d/circuit_imprinter,
 /obj/item/weapon/reagent_containers/glass/beaker/sulphuric,
@@ -7732,6 +7756,25 @@
 "nAx" = (
 /turf/open/floor/plasteel/cafeteria,
 /area/shuttle/ftl/crew_quarters/kitchen)
+"nCz" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "Escape Pod Airlock"
+	},
+/obj/effect/landmark/pod_port_spawner{
+	dir = 2;
+	dwidth = 1;
+	height = 4;
+	pod_id = "pod1";
+	pod_name = "Escape Pod 1";
+	width = 3
+	},
+/obj/structure/fans/tiny,
+/obj/docking_port/mobile/pod{
+	dir = 2;
+	id = "pod1"
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/ftl/subshuttle/pod_1)
 "nDf" = (
 /obj/machinery/r_n_d/circuit_imprinter,
 /obj/structure/sign/poster/random{
@@ -16420,24 +16463,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/shuttle/ftl/cargo/office)
-"ByQ" = (
-/obj/machinery/door/airlock/shuttle{
-	name = "Escape Pod Airlock"
-	},
-/obj/effect/landmark/pod_port_spawner{
-	dir = 2;
-	dwidth = 1;
-	height = 4;
-	pod_id = "pod1";
-	pod_name = "Escape Pod 1";
-	width = 3
-	},
-/obj/structure/fans/tiny,
-/obj/docking_port/mobile/pod{
-	dir = 2
-	},
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/ftl/subshuttle/pod_1)
 "ByU" = (
 /obj/structure/table/wood,
 /obj/item/weapon/book/manual/wiki/security_ship_law,
@@ -19307,6 +19332,25 @@
 	},
 /turf/open/floor/plasteel/black,
 /area/shuttle/ftl/security/brig)
+"Glg" = (
+/obj/machinery/door/airlock/shuttle{
+	name = "Escape Pod Airlock"
+	},
+/obj/effect/landmark/pod_port_spawner{
+	dir = 2;
+	dwidth = 1;
+	height = 4;
+	pod_id = "pod2";
+	pod_name = "Escape Pod 2";
+	width = 3
+	},
+/obj/structure/fans/tiny,
+/obj/docking_port/mobile/pod{
+	dir = 2;
+	id = "pod2"
+	},
+/turf/open/floor/plasteel/shuttle,
+/area/shuttle/ftl/subshuttle/pod_2)
 "Glz" = (
 /obj/structure/closet/wardrobe/white/medical,
 /turf/open/floor/plasteel/white,
@@ -19956,24 +20000,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/ftl/maintenance/medbay)
-"Hor" = (
-/obj/machinery/door/airlock/shuttle{
-	name = "Escape Pod Airlock"
-	},
-/obj/effect/landmark/pod_port_spawner{
-	dir = 2;
-	dwidth = 1;
-	height = 4;
-	pod_id = "pod2";
-	pod_name = "Escape Pod 2";
-	width = 3
-	},
-/obj/structure/fans/tiny,
-/obj/docking_port/mobile/pod{
-	dir = 2
-	},
-/turf/open/floor/plasteel/shuttle,
-/area/shuttle/ftl/subshuttle/pod_2)
 "HpA" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -29576,26 +29602,6 @@
 	},
 /turf/open/floor/plasteel/black,
 /area/shuttle/ftl/security/brig)
-"XvJ" = (
-/obj/machinery/door/airlock/shuttle{
-	name = "Emergency Shuttle Airlock";
-	req_access_txt = "0"
-	},
-/obj/effect/landmark/pod_port_spawner{
-	dheight = 7;
-	dir = 1;
-	dwidth = 0;
-	height = 17;
-	pod_id = "pod3";
-	pod_name = "Escape Shuttle A";
-	width = 11
-	},
-/obj/structure/fans/tiny,
-/obj/docking_port/mobile/emergency{
-	
-	},
-/turf/open/floor/plasteel,
-/area/shuttle/ftl/subshuttle/pod_3)
 "XvL" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden{
 	dir = 1
@@ -73737,7 +73743,7 @@ sZc
 Ikf
 sZc
 sZc
-XvJ
+hgl
 sZc
 jSh
 YDz
@@ -74480,7 +74486,7 @@ rDb
 AAg
 fOT
 idN
-ByQ
+nCz
 yHe
 gSB
 Oxk
@@ -75508,7 +75514,7 @@ XOG
 Fkx
 vmj
 idN
-Hor
+Glg
 Vgz
 SqV
 IDd
