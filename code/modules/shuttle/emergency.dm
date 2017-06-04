@@ -88,7 +88,7 @@
 		var/repeal = (authorized.len < old_len)
 		var/remaining = auth_need - authorized.len
 		if(authorized.len && remaining)
-			minor_announce("[remaining] authorizations needed until shuttle is launched early", null, alert)
+			minor_announce("[remaining] authorizations needed until pods are launched early", null, alert)
 		if(repeal)
 			minor_announce("Early launch authorization revoked, [remaining] authorizations needed")
 
@@ -129,7 +129,7 @@
 		// shuttle timers use 1/10th seconds internally
 		SSshuttle.emergency.setTimer(ENGINES_START_TIME)
 		var/system_error = emagged ? "SYSTEM ERROR:" : null
-		minor_announce("The emergency shuttle will launch in \
+		minor_announce("The escape pods will launch in \
 			[TIME_LEFT] seconds", system_error, alert=TRUE)
 		. = TRUE
 
@@ -139,7 +139,7 @@
 		return
 
 	if(emagged || ENGINES_STARTED)	//SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LAUNCH IN 10 SECONDS
-		to_chat(user, "<span class='warning'>The shuttle is already about to launch!</span>")
+		to_chat(user, "<span class='warning'>The spods are already about to launch!</span>")
 		return
 
 	var/time = TIME_LEFT
@@ -175,13 +175,13 @@
 
 	. = ..()
 
-/obj/docking_port/mobile/emergency
+/obj/docking_port/mobile/emergency //keeping this for ease of using emergency shuttle code since it's so ingrained. eventually this needs to be it's own datum or something
 	name = "emergency shuttle"
 	id = "emergency"
 
-	dwidth = 9
-	width = 17
-	height = 11
+	dwidth = 0
+	width = 0
+	height = 0
 	dir = EAST
 	port_angle = -90
 	roundstart_move = "emergency_away"
@@ -234,7 +234,7 @@
 	else
 		SSshuttle.emergencyLastCallLoc = null
 
-	priority_announce("The escape shuttles have been armed. [redAlert ? "General Quarters status confirmed: Emergency fueling initiated " : "" ]It will launch in [timeLeft(600)] minutes.[reason][SSshuttle.emergencyLastCallLoc ? "\n\nArming signal traced. Results can be viewed on any communications console." : "" ]", null, 'sound/AI/shuttlecalled.ogg', "Priority")
+	priority_announce("The escape pods have been armed. [redAlert ? "General Quarters status confirmed: Emergency fueling initiated " : "" ]It will launch in [timeLeft(600)] minutes.[reason][SSshuttle.emergencyLastCallLoc ? "\n\nArming signal traced. Results can be viewed on any communications console." : "" ]", null, 'sound/AI/shuttlecalled.ogg', "Priority")
 
 /obj/docking_port/mobile/emergency/cancel(area/signalOrigin)
 	if(mode != SHUTTLE_CALL)
@@ -249,7 +249,7 @@
 		SSshuttle.emergencyLastCallLoc = signalOrigin
 	else
 		SSshuttle.emergencyLastCallLoc = null
-	priority_announce("The escape shuttles have been disarmed.[SSshuttle.emergencyLastCallLoc ? " Disarm signal traced. Results can be viewed on any communications console." : "" ]", null, 'sound/AI/shuttlerecalled.ogg', "Priority")
+	priority_announce("The escape pods have been disarmed.[SSshuttle.emergencyLastCallLoc ? " Disarm signal traced. Results can be viewed on any communications console." : "" ]", null, 'sound/AI/shuttlerecalled.ogg', "Priority")
 
 /obj/docking_port/mobile/emergency/proc/is_hijacked()
 	var/has_people = FALSE
@@ -354,11 +354,11 @@
 				for(var/area/shuttle/ftl/subshuttle/E in GLOB.sortedAreas)
 					areas += E
 				hyperspace_sound(HYPERSPACE_LAUNCH, areas)
-				enterTransit()
+			//	enterTransit()
 				mode = SHUTTLE_ESCAPE
 				launch_status = ENDGAME_LAUNCHED
 				setTimer(SSshuttle.emergencyEscapeTime)
-				priority_announce("The Emergency Shuttle has left the station. Estimate [timeLeft(600)] minutes until the shuttle docks at Central Command.", null, null, "Priority")
+				priority_announce("The escape pods have been launched from the ship. Estimated [timeLeft(600)] minutes until impact with orbited planet.", null, null, "Priority")
 
 		if(SHUTTLE_STRANDED)
 			SSshuttle.checkHostileEnvironment()
@@ -381,22 +381,25 @@
 				//move each escape pod to its corresponding escape dock
 				for(var/A in SSshuttle.mobile)
 					var/obj/docking_port/mobile/M = A
-					if(M.launch_status == ENDGAME_LAUNCHED)
+					if(M.launch_status == ENDGAME_LAUNCHED || EARLY_LAUNCHED)
 						if(istype(M, /obj/docking_port/mobile/pod))
-							M.dock(SSshuttle.getDock("[M.id]_away")) //Escape pods dock at centcomm
+							SSshuttle.generate_pod_landings() //enter rimworld
+							M.dock(SSshuttle.getDock("[M.id]_away"))
+							if(prob(50))
+								M.crash_land() //Escape pods crash land sometimes
 						else
 							continue //Mapping a new docking point for each ship mappers could potentially want docking with centcomm would take up lots of space, just let them keep flying off into the sunset for their greentext
 
 				// now move the actual emergency shuttle to centcomm
 				// unless the shuttle is "hijacked"
 				var/destination_dock = "emergency_away"
-				if(is_hijacked())
+/*				if(is_hijacked())
 					destination_dock = "emergency_syndicate"
 					minor_announce("Corruption detected in \
 						shuttle navigation protocols. Please contact your \
-						supervisor.", "SYSTEM ERROR:", alert=TRUE)
+						supervisor.", "SYSTEM ERROR:", alert=TRUE) */
 
-				dock_id(destination_dock)
+			//	dock_id(destination_dock)
 				mode = SHUTTLE_ENDGAME
 				timer = 0
 
@@ -421,12 +424,12 @@
 /obj/docking_port/mobile/pod/request()
 	var/obj/machinery/computer/shuttle/S = getControlConsole()
 
-	if(GLOB.security_level == SEC_LEVEL_DELTA || GLOB.security_level == SEC_LEVEL_DELTA || (S && S.emagged))
+	if((SSshuttle.emergency.mode != SHUTTLE_RECALL && SSshuttle.emergency.mode != SHUTTLE_IDLE)||(S && S.emagged))
 		if(launch_status == UNLAUNCHED)
 			launch_status = EARLY_LAUNCHED
 			return ..()
 	else
-		to_chat(usr, "<span class='warning'>Escape pods will only launch during \"Code Red\" security alert.</span>")
+		to_chat(usr, "<span class='warning'>Escape pods will only launch early during evacuation procedures.</span>")
 		return 1
 
 /obj/docking_port/mobile/pod/Initialize()
@@ -436,6 +439,15 @@
 
 /obj/docking_port/mobile/pod/cancel()
 	return
+
+/obj/docking_port/mobile/pod/proc/crash_land()
+	var/list/turfs = src.return_unordered_turfs()
+	var/explosions = round(turfs.len/5)
+
+	for(var/i = 1 to explosions)
+		explosion(epicenter,1,3,5)
+
+
 
 /obj/machinery/computer/shuttle/pod
 	name = "pod control computer"

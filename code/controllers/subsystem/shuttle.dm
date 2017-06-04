@@ -17,8 +17,6 @@ SUBSYSTEM_DEF(shuttle)
 
 		//emergency shuttle stuff
 	var/obj/docking_port/mobile/emergency/emergency
-	var/obj/docking_port/mobile/arrivals/arrivals
-	var/obj/docking_port/mobile/emergency/backup/backup_shuttle
 	var/emergencyCallTime = 6000	//time taken for emergency shuttle to reach the station when called (in deciseconds)
 	var/emergencyDockTime = 1800	//time taken for emergency shuttle to leave again once it has docked (in deciseconds)
 	var/emergencyEscapeTime = 1200	//time taken for emergency shuttle to reach a safe distance after leaving station (in deciseconds)
@@ -556,4 +554,21 @@ SUBSYSTEM_DEF(shuttle)
 	for(var/obj/docking_port/mobile/M in mobile)
 		if(M.is_in_shuttle_bounds(A))
 			return TRUE
+
+/datum/controller/subsystem/shuttle/proc/generate_pod_landings()
+	var/obj/docking_port/mobile/M = SSshutle.getDock("ftldock_land")
+	if(!M)
+		return //if we're flying into a gas giant, RIP
+
+	for(var/A in SSshuttle.mobile)
+		var/obj/docking_port/mobile/pod = A
+		if(!istype(A))
+			continue
+
+		var/turf/T = locate(rand(0,world.maxx-50),rand(0,world.maxy-50),M.z)
+		if(!T)
+			continue
+
+		var/obj/docking_port/stationary/S = new(T)
+		S.id = "[A.id]_away"
 
