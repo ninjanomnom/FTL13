@@ -139,7 +139,7 @@
 		return
 
 	if(emagged || ENGINES_STARTED)	//SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LA-SYSTEM ERROR: THE SHUTTLE WILL LAUNCH IN 10 SECONDS
-		to_chat(user, "<span class='warning'>The spods are already about to launch!</span>")
+		to_chat(user, "<span class='warning'>The escape pods are already about to launch!</span>")
 		return
 
 	var/time = TIME_LEFT
