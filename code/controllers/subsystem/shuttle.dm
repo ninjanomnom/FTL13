@@ -557,8 +557,12 @@ SUBSYSTEM_DEF(shuttle)
 			return TRUE
 
 /datum/controller/subsystem/shuttle/proc/generate_pod_landings()
-	var/obj/docking_port/mobile/M = SSshuttle.getDock("ftldock_land")
-	if(!M)
+	var/obj/docking_port/stationary/L
+	for(var/obj/docking_port/stationary/S in SSshuttle.stationary)
+		if(S.planet_dock)
+			L = S
+			break
+	if(!L)
 		return //if we're flying into a gas giant, RIP
 
 	for(var/A in SSshuttle.mobile)
@@ -566,10 +570,11 @@ SUBSYSTEM_DEF(shuttle)
 		if(!istype(P))
 			continue
 
-		var/turf/T = locate(rand(0,world.maxx-50),rand(0,world.maxy-50),M.z)
+		var/turf/T = locate(rand(0,world.maxx-50),rand(0,world.maxy-50),L.z)
 		if(!T)
 			continue
 
 		var/obj/docking_port/stationary/S = new(T)
 		S.id = "[P.id]_away"
+		message_admins("Generated a pod landing area with ID: [S.id]")
 

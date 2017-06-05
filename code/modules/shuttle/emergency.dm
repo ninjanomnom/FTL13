@@ -278,7 +278,7 @@
 
 	// The emergency shuttle doesn't work like others so this
 	// ripple check is slightly different
-	if(!ripples.len && (time_left <= SHUTTLE_RIPPLE_TIME) && ((mode == SHUTTLE_CALL) || (mode == SHUTTLE_ESCAPE)))
+/*	if(!ripples.len && (time_left <= SHUTTLE_RIPPLE_TIME) && ((mode == SHUTTLE_CALL) || (mode == SHUTTLE_ESCAPE)))
 		var/destination
 		if(mode == SHUTTLE_CALL)
 			destination = SSshuttle.getDock("emergency_home")
@@ -286,7 +286,7 @@
 				return
 		else if(mode == SHUTTLE_ESCAPE)
 			destination = SSshuttle.getDock("emergency_away")
-		create_ripples(destination)
+		create_ripples(destination) */
 
 	switch(mode)
 		if(SHUTTLE_RECALL)
@@ -294,13 +294,14 @@
 				mode = SHUTTLE_IDLE
 				timer = 0
 		if(SHUTTLE_CALL)
+			mode = SHUTTLE_DOCKED //skipping this part
 /*
 			if(time_left <= 0)
 				//move emergency shuttle to station
 				if(dock(SSshuttle.getDock("emergency_home")))
 					setTimer(20)
 					return
-				mode = SHUTTLE_DOCKED
+
 				setTimer(SSshuttle.emergencyDockTime)
 				send2irc("Server", "The Emergency Shuttle has docked with the station.")
 				priority_announce("The Emergency Shuttle has docked with the station. You have [timeLeft(600)] minutes to board the Emergency Shuttle.", null, 'sound/AI/shuttledock.ogg', "Priority")
@@ -317,6 +318,32 @@
 					else
 						G.dom_attempts = min(1,G.dom_attempts)
 */
+
+		if(SHUTTLE_DOCKED)
+			if(time_left <= ENGINES_START_TIME)
+				mode = SHUTTLE_IGNITING
+				SSshuttle.checkHostileEnvironment()
+				if(mode == SHUTTLE_STRANDED)
+					return
+				for(var/A in SSshuttle.mobile)
+					var/obj/docking_port/mobile/M = A
+					if(M.launch_status == UNLAUNCHED) //start setting up transit zones for the pods
+						M.check_transit_zone()
+
+		if(SHUTTLE_IGNITING)
+			var/success = TRUE
+			SSshuttle.checkHostileEnvironment()
+			if(mode == SHUTTLE_STRANDED)
+				return
+
+//			success &= (check_transit_zone() == TRANSIT_READY) //we dont' care if the emergency shuttle is ready or not
+			for(var/A in SSshuttle.mobile)
+				var/obj/docking_port/mobile/M = A
+				if(M.launch_status == UNLAUNCHED)
+					success &= (M.check_transit_zone() == TRANSIT_READY)
+			if(!success)
+				setTimer(ENGINES_START_TIME)
+
 
 			if(time_left <= 50 && !sound_played ) //4 seconds left:REV UP THOSE ENGINES BOYS. - should sync up with the launch
 				sound_played = 1 //Only rev them up once.
@@ -378,15 +405,14 @@
 							M.parallax_slowdown()
 
 			if(time_left <= 0)
+				SSshuttle.generate_pod_landings() //enter rimworld
 				//move each escape pod to its corresponding escape dock
 				for(var/A in SSshuttle.mobile)
 					var/obj/docking_port/mobile/pod/M = A
 					if(M.launch_status == ENDGAME_LAUNCHED || EARLY_LAUNCHED)
 						if(istype(M))
-							SSshuttle.generate_pod_landings() //enter rimworld
-							M.dock(SSshuttle.getDock("[M.id]_away"))
-							if(prob(50))
-								M.crash_land() //Escape pods crash land sometimes
+							M.dock(SSshuttle.getDock("[M.id]_away"),1)
+							M.crash_land() //Escape pods crash land sometimes
 						else
 							continue //Mapping a new docking point for each ship mappers could potentially want docking with centcomm would take up lots of space, just let them keep flying off into the sunset for their greentext
 
@@ -421,6 +447,8 @@
 	height = 4
 	launch_status = UNLAUNCHED
 
+	var/crashed = 0
+
 /obj/docking_port/mobile/pod/request()
 	var/obj/machinery/computer/shuttle/S = getControlConsole()
 
@@ -440,7 +468,13 @@
 /obj/docking_port/mobile/pod/cancel()
 	return
 
+/obj/docking_port/mobile/pod/check()
+	return
+
 /obj/docking_port/mobile/pod/proc/crash_land()
+	if(prob(50) || crashed)
+		return
+	crashed = 1  //wierd race condition stuff? Don't blow up more than once
 	var/list/turfs = src.return_unordered_turfs()
 	var/explosions = round(turfs.len/5)
 
